@@ -18,6 +18,11 @@ app.get("/", function (req, res) {
 
 });
 
+app.get("/about", function(req, res){
+
+    res.render("about");
+})
+
 app.post("/", async function(req, res){
 
     const githublink = "https://github.com/" + req.body.Github_ID + "?tab=repositories" ;

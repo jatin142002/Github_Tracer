@@ -1,0 +1,31 @@
+<%- include('partials/header'); -%>
+
+<h1 ><strong>Github Repositories Of <%= userID%><strong></strong></h1>
+
+<div class="accordion" >
+
+    <% console.log(userRepos); %>
+
+    <% userRepos.forEach(function(repo){ %>
+        <% console.log(repo.name) %>
+       
+
+          <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body">
+                <strong>&#x2022 <%= repo.name%></strong>
+            </div>
+            <div class="toast-header">
+                <a href="<%= repo.link%>" class="btn btn-info">Visit Here</a>
+            </div>
+           
+          </div>
+
+    <% })%>
+    
+    
+  </div>
+
+
+
+</div>
+<%- include('partials/footer'); -%>

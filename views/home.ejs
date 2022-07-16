@@ -1,0 +1,26 @@
+<%- include('partials/header'); -%>
+
+    <form action="/" class="form-signin" method="post">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+          class="mb-2"
+          style="width: 40%"
+          alt="logo"
+        />
+
+        <h2><strong>Enter Github ID</strong></h2>
+        <input
+          type="text"
+          name="Github_ID"
+          class="form-control"
+          placeholder="Github ID"
+          style="margin-bottom: 10px"
+          required
+          autofocus
+        />
+        <button class="btn btn-lg btn-info btn-block" type="submit">
+          Enter
+        </button>
+    </form>
+
+<%- include('partials/footer'); -%>

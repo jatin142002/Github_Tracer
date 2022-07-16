@@ -5,9 +5,6 @@ import request from "request";
 import cheerio from "cheerio";
 import chalk from "chalk";
 
-let userRepos = [];
-let userID = "";
-
 const app = express();
 
 app.set("view engine", "ejs");
@@ -21,23 +18,14 @@ app.get("/", function (req, res) {
 
 });
 
-app.get("/repos", function(req, res){
-
-    res.render("repos", {userID: userID , userRepos: userRepos});
-});
-
 app.post("/", async function(req, res){
 
     const githublink = "https://github.com/" + req.body.Github_ID + "?tab=repositories" ;
 
-    userID = req.body.Github_ID;
-
-    console.log(userID);
     console.log(req.body.Github_ID);
 
-    await Scrap(githublink);
-
-    res.redirect("/repos");
+    Scrap(githublink, req.body.Github_ID , res);
+    
 });
 
 app.listen(5000, function () {
@@ -48,7 +36,7 @@ app.listen(5000, function () {
 
 // ---------> SCRAPPING is done here <--------------------------
 
-async function Scrap(url){
+function Scrap(url , userID , res){
 
     request(url , (error, response, html)=>{
         if(error)
@@ -58,18 +46,21 @@ async function Scrap(url){
         else
         {
             console.log(chalk.yellow("Status Code : "+response.statusCode));
-            handleHTML(html);
+            handleHTML(html , userID , res);
         }
     })
+  
+    // console.log(repos);
+    // return repos;  
 }
 
-function handleHTML(html)
+function handleHTML(html , userID , res)
 {
     const $ = cheerio.load(html);
 
     const repos = $("a[itemprop='name codeRepository']");
 
-    userRepos = [];
+    let repos1 = [];
 
     for(let i=0 ; i<repos.length ; i++)
     {
@@ -83,7 +74,11 @@ function handleHTML(html)
             name: repoName,
             link: repoLink
         }
-        userRepos.push(repo);
+        repos1.push(repo);
     }
+
+    console.log(repos1);
+    res.render("repos", {userID: userID , userRepos: repos1});
+    // return repos1;
  
 }

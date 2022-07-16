@@ -43,7 +43,7 @@ html {
 
   .item{
     text-align: center;
-    margin: 50px auto;
+   
   }
 
   .form-signin {
@@ -52,5 +52,23 @@ html {
     padding: 15px;
     margin: auto;
   }
- 
-  
+
+.repocontainer{
+    /* border: 2px solid red; */
+    width: 60%;
+}
+
+.repoheading{
+    margin-bottom: 30px;
+    margin-top: 50px;
+}
+
+.repos{
+    text-align: left;
+    background-color: #586468;
+    margin-bottom: 20px;
+    padding: 1px 20px 23px 20px;
+    box-shadow: 5px 5px #161414;
+    color: white;
+    border-radius: 10px;
+}
